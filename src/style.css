@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body, :root {
+  background: #141414;
+  color: #fff;
+}
+
+/* HEADER */
+header {
+  height: 56px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  background: #000;
+}
+
+.logo {
+  color: #e50914;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* HERO */
+.hero {
+  height: 260px;
+  background:
+    linear-gradient(to top, #141414 10%, transparent 60%),
+    linear-gradient(to right, #141414 15%, transparent 60%),
+    url('https://picsum.photos/800/500?blur=2') center/cover;
+  padding: 110px 16px 0;
+}
+
+.hero h1 {
+  font-size: 28px;
+  mix-blend-mode: difference;
+}
+
+.meta {
+  font-size: 13px;
+  color: #bbb;
+  mix-blend-mode: difference;
+  margin: 6px 0;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.play {
+  background: #fff;
+  color: #000;
+}
+
+.info {
+  background: #333;
+  color: #fff;
+}
+
+/* CONTENT */
+.content {
+  padding: 16px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.tab.active {
+  border-bottom: 2px solid #e50914;
+  padding-bottom: 6px
+}
+
+.episode {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: white;
+  text-decoration: none;
+}
+
+.episode__thumb {
+  width: 120px;
+  height: 68px;
+  background: url('https://picsum.photos/300/200') center/cover;
+  border-radius: 4px;
+}
+.episode__desc {
+  flex: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.ep-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+}
+
+.ep-desc {
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 4px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+
+}
+
+.duration {
+  font-size: 11px;
+  color: #777;
+}
