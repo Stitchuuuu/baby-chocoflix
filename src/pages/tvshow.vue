@@ -63,19 +63,17 @@ const year = ref('')
 const bg = ref('')
 
 function getMobileOperatingSystem() {
-	const userAgent = navigator.userAgent || navigator.vendor || window.opera
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera
 
-	if (/android/i.test(userAgent)) {
-		return { android: true }
-	}
+    if (/android/i.test(userAgent)) {
+      return { android: true }
+    }
 
-	// iOS detection from: http://stackoverflow.com/a/9039885/177710
-	if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-		return { iOS: true }
-	} else if (navigator.maxTouchPoints && /MacIntel/.test(navigator.platform)) {
-		return { iOS: true }
-	}
-	return {}
+    // iOS detection from: http://stackoverflow.com/a/9039885/177710
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      return { iOS: true }
+    }
+		return {}
 }
 
 function openChoiceInMobile(event, ep) {
@@ -122,14 +120,15 @@ const links = reactive([])
 const loading = computed(() => episodes.length === 0 || links.length === 0)
 
 const params = new URLSearchParams(location.search)
-if (params.get('pw') || process.env.NODE_ENV === 'development') {
+if (params.get('pw')) {
 	loadConfig(params.get('pw')).then(() => {
 		if (!params.get('config')) return
 		fetch('configs/' + params.get('config') + '.json')
 			.then(res => res.json())
 			.then(config => {
-				const tmdbQuery = typeof config.tmdbQuery === 'string' ? { query: config.tmdbQuery } : { ...config.tmdbQuery }
-				fetchTV(tmdbQuery).then(tvInfo => {
+				fetchTV({
+					query: config.tmdbQuery
+				}).then(tvInfo => {
 					title.value = tvInfo.title
 					year.value = tvInfo.year
 					bg.value = tvInfo.background
