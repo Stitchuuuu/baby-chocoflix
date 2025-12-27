@@ -35,9 +35,11 @@ async function decryptFile(data, hexKey) {
 
 
 export async function loadConfig(hexKey) {
-	return loading = fetch('config.json?t=' + Date.now())
+	const name = process.env.NODE_ENV === 'development' && !hexKey ? 'config.decrypted.json' : 'config.json'
+	return loading = fetch(`${name}?t=${Date.now()}`)
 		.then(r => r.json())
 		.then(data => {
+			if (name === 'config.decrypted.json') return data
 			return decryptFile(data, hexKey)
 		}).then(decryptedData => {
 			config = decryptedData
@@ -47,7 +49,6 @@ export async function loadConfig(hexKey) {
 		}).finally(() => {
 			loaded = true
 		})
-	return decryptFile(data, hexKey)
 }
 
 /**
