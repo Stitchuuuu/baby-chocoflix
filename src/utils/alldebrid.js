@@ -34,10 +34,10 @@ export async function fetchAlldebrid(magnetIds, { debrid } = {}) {
 			const files = []
 			const links = []
 			for (const m of magnets) {
-				files.push(...m.files.map(f => ({
-					private: f.l,
-					name: f.n,
-				})))
+				files.push(...m.files.map(f => {
+					if (f.l && f.n) return [{ private: f.l, name: f.n }]
+					else if (f.e) return f.e.map(e => ({ private: e.l, name: e.n }))
+				}).flat(1))
 			}
 			if (debrid) {
 				for (const f of files) {
