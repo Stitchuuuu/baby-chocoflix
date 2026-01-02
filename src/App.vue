@@ -128,9 +128,8 @@ if (params.get('pw') || process.env.NODE_ENV === 'development') {
 		fetch('configs/' + params.get('config') + '.json')
 			.then(res => res.json())
 			.then(config => {
-				fetchTV({
-					query: config.tmdbQuery
-				}).then(tvInfo => {
+				const tmdbQuery = typeof config.tmdbQuery === 'string' ? { query: config.tmdbQuery } : { ...config.tmdbQuery }
+				fetchTV(tmdbQuery).then(tvInfo => {
 					title.value = tvInfo.title
 					year.value = tvInfo.year
 					bg.value = tvInfo.background

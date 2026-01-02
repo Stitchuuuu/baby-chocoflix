@@ -33,6 +33,7 @@ header {
     linear-gradient(to right, #141414 15%, transparent 60%),
     url('https://picsum.photos/800/500?blur=2') center/cover;
   padding: 110px 16px 0;
+  background-size: cover;
 }
 
 .hero h1 {
